@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, sans-serif;
+      background: linear-gradient( #ff3636, #ec7e24, #d8f438);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+   #objeto {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(61, 230, 227);
+      margin: 50px auto;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    </style>
+</head>
+<body>
+    <div id="objeto">CLICK ME</div>
+
+     <script>
+    const objeto = document.getElementById('objeto');
+
+    objeto.addEventListener('click', () => {
+      const color = generarColorAleatorio();
+      objeto.style.backgroundColor = color;
+    })
+
+    function generarColorAleatorio() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    
+  </script>
+</body>
+</html>

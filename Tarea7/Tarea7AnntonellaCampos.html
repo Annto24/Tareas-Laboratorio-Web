@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea7</title>
+    <style>
+        body{
+        background-color: pink;
+        margin: 0;
+        overflow: hidden;
+        }
+
+        .trail-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: rgb(185, 75, 225);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.8;
+      transition: transform 0.1s linear;
+    }
+    </style>
+</head>
+<body>
+    <script>
+    const trailLength = 20;
+    const trail = []; 
+    let mouseX = 0;
+    let mouseY = 0;
+
+    function createTrail() {
+      for (let i = 0; i < trailLength; i++) {
+        const dot = document.createElement("div");
+        dot.classList.add("trail-dot");
+        document.body.appendChild(dot);
+        trail.push({ element: dot, x: 0, y: 0 });
+      }
+    }
+
+    document.addEventListener("mousemove", function(event) {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    });
+
+    function animateTrail() {
+      for (let i = trail.length - 1; i > 0; i--) {
+        trail[i].x = trail[i - 1].x;
+        trail[i].y = trail[i - 1].y;
+      }
+
+      trail[0].x = mouseX;
+      trail[0].y = mouseY;
+
+      for (let i = 0; i < trail.length; i++) {
+        const dot = trail[i];
+        dot.element.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+      }
+    }
+
+    createTrail();
+
+    setInterval(animateTrail, 16);
+    </script>
+</body>
+</html>
